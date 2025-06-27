@@ -10,6 +10,7 @@ public class MazeGenerator : MonoBehaviour
 
     [SerializeField] private int mazeWidth;
     [SerializeField] private int mazeHeight;
+    [SerializeField] private float waitTime;
 
     private MazeCell[,] mazeGrid;
 
@@ -24,29 +25,36 @@ public class MazeGenerator : MonoBehaviour
                 mazeGrid[x, y] = Instantiate(_mazeCellPrefab, new Vector3(x, y, 0), Quaternion.identity);
             }
         }
-        yield return GenerateMaze(null, mazeGrid[0, 0]);
+        yield return GenerateMazeIterative(mazeGrid[0, 0]);
     }
 
-    private IEnumerator GenerateMaze(MazeCell previousCell, MazeCell currentCell)
+    private IEnumerator GenerateMazeIterative(MazeCell startCell)
     {
-        currentCell.Visit();
-        ClearWalls(previousCell, currentCell);
-        yield return new WaitForSeconds(0.05f);
-        MazeCell nextCell;
-        do
+        Stack<MazeCell> stack = new Stack<MazeCell>();
+        stack.Push(startCell);
+
+        while (stack.Count > 0)
         {
-            nextCell = GetNextUnvisitedCell(currentCell);
-            if (nextCell != null)
+            MazeCell currentCell = stack.Peek();
+            if (!currentCell.IsVisited)
             {
-                yield return GenerateMaze(currentCell, nextCell);
+                currentCell.Visit();
             }
-        } while (nextCell != null);
-    }
 
-    private MazeCell GetNextUnvisitedCell(MazeCell currentCell)
-    {
-        var unvisitedCells = GetUnvisitedCells(currentCell);
-        return unvisitedCells.OrderBy(_ => Random.Range(1, 10)).FirstOrDefault();
+            var unvisited = GetUnvisitedCells(currentCell).OrderBy(_ => Random.value).ToList();
+            if (unvisited.Count > 0)
+            {
+                MazeCell nextCell = unvisited.First();
+                ClearWalls(currentCell, nextCell);
+                stack.Push(nextCell);
+            }
+            else
+            {
+                stack.Pop();
+            }
+
+            yield return new WaitForSeconds(waitTime);
+        }
     }
 
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell)
@@ -56,16 +64,16 @@ public class MazeGenerator : MonoBehaviour
 
         if (x + 1 < mazeWidth)
         {
-            var celltoRight = mazeGrid[x + 1, y];
-            if (celltoRight.IsVisited == false)
+            var cellToRight = mazeGrid[x + 1, y];
+            if (!cellToRight.IsVisited)
             {
-                yield return celltoRight;
+                yield return cellToRight;
             }
         }
         if (x - 1 >= 0)
         {
             var cellToLeft = mazeGrid[x - 1, y];
-            if (cellToLeft.IsVisited == false)
+            if (!cellToLeft.IsVisited)
             {
                 yield return cellToLeft;
             }
@@ -73,7 +81,7 @@ public class MazeGenerator : MonoBehaviour
         if (y + 1 < mazeHeight)
         {
             var cellToTop = mazeGrid[x, y + 1];
-            if (cellToTop.IsVisited == false)
+            if (!cellToTop.IsVisited)
             {
                 yield return cellToTop;
             }
@@ -81,7 +89,7 @@ public class MazeGenerator : MonoBehaviour
         if (y - 1 >= 0)
         {
             var cellToBottom = mazeGrid[x, y - 1];
-            if (cellToBottom.IsVisited == false)
+            if (!cellToBottom.IsVisited)
             {
                 yield return cellToBottom;
             }
