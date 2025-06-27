@@ -13,9 +13,31 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private float waitTime;
 
     private MazeCell[,] mazeGrid;
+    private Coroutine mazeCoroutine;
 
-    IEnumerator Start()
+    void Start()
     {
+        GenerateMaze();
+    }
+
+    public void GenerateMaze()
+    {
+        // If a maze is already being generated, stop it
+        if (mazeCoroutine != null)
+        {
+            StopCoroutine(mazeCoroutine);
+        }
+
+        // Destroy old maze cells if they exist
+        if (mazeGrid != null)
+        {
+            foreach (var cell in mazeGrid)
+            {
+                if (cell != null)
+                    Destroy(cell.gameObject);
+            }
+        }
+
         mazeGrid = new MazeCell[mazeWidth, mazeHeight];
 
         for (int x = 0; x < mazeWidth; x++)
@@ -25,7 +47,8 @@ public class MazeGenerator : MonoBehaviour
                 mazeGrid[x, y] = Instantiate(_mazeCellPrefab, new Vector3(x, y, 0), Quaternion.identity);
             }
         }
-        yield return GenerateMazeIterative(mazeGrid[0, 0]);
+
+        mazeCoroutine = StartCoroutine(GenerateMazeIterative(mazeGrid[0, 0]));
     }
 
     private IEnumerator GenerateMazeIterative(MazeCell startCell)
