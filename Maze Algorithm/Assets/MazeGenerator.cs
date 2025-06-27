@@ -8,9 +8,9 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField]
     private MazeCell _mazeCellPrefab;
 
-    [SerializeField] private int mazeWidth;
-    [SerializeField] private int mazeHeight;
-    [SerializeField] private float waitTime;
+    public int mazeWidth;
+    public int mazeHeight;
+    public float waitTime;
 
     private MazeCell[,] mazeGrid;
     private Coroutine mazeCoroutine;
