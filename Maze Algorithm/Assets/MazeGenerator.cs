@@ -53,6 +53,7 @@ public class MazeGenerator : MonoBehaviour
 
     private IEnumerator GenerateMazeIterative(MazeCell startCell)
     {
+
         Stack<MazeCell> stack = new Stack<MazeCell>();
         stack.Push(startCell);
 

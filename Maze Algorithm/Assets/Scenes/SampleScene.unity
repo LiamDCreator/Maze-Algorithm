@@ -1035,7 +1035,6 @@ MonoBehaviour:
   widthInput: {fileID: 697083328}
   heightInput: {fileID: 1296242981}
   waitTimeInput: {fileID: 239306555}
-  waitTimeValueText: {fileID: 1986811034}
 --- !u!4 &989537358
 Transform:
   m_ObjectHideFlags: 0
