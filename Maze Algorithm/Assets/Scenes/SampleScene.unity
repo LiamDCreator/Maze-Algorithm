@@ -517,7 +517,7 @@ RectTransform:
   m_GameObject: {fileID: 461709090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 2.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 709263694}
@@ -525,8 +525,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 99, y: 27}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 80, y: 43.3}
+  m_SizeDelta: {x: 160, y: 25.3232}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &461709092
 MonoBehaviour:
@@ -604,8 +604,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 705336309, guid: 117d6b342e597224baae35b676a72f20, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -853,9 +853,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeGenerator: {fileID: 1943830351}
   cellSize: 1
-  padding: 5
+  padding: 10
   zoomOutValue: 1.2
   zoomInValue: 1.2
+  horizontalOffsetPercent: 0.1
 --- !u!1 &593209318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1236,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &709263696
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1399,7 +1400,7 @@ RectTransform:
   m_GameObject: {fileID: 1072596376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1838360330}
@@ -1407,8 +1408,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 274, y: 27}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 193, y: 43.3}
+  m_SizeDelta: {x: 160, y: 132.5893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1072596378
 MonoBehaviour:
@@ -1486,8 +1487,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -327667861, guid: 117d6b342e597224baae35b676a72f20, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1906,7 +1907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1838360332
 CanvasRenderer:
   m_ObjectHideFlags: 0

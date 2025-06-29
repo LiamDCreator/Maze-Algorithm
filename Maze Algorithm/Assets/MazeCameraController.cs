@@ -26,7 +26,7 @@ public class MazeCameraController : MonoBehaviour
         float mazeHeightWorld = mazeGenerator.mazeHeight * cellSize;
 
         // Center position
-        float centerX = (mazeGenerator.mazeWidth - 1) * cellSize / 2f;
+        float centerX = (mazeGenerator.mazeWidth - 1) * cellSize / 3f;
         float centerY = (mazeGenerator.mazeHeight - 1) * cellSize / 2f;
         Vector3 center = new Vector3(centerX, centerY, -10f); // -10 for default camera z
 
