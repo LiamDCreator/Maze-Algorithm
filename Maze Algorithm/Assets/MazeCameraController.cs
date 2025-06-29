@@ -5,6 +5,8 @@ public class MazeCameraController : MonoBehaviour
     public MazeGenerator mazeGenerator;
     public float cellSize = 1f; // Set to your cell prefab's size (default 1)
     public float padding = 1f;  // Extra space around the maze
+    [SerializeField] private float zoomOutValue;
+    [SerializeField] private float zoomInValue;
 
     private Camera cam;
 
@@ -36,5 +38,15 @@ public class MazeCameraController : MonoBehaviour
         float sizeY = (mazeHeightWorld / 2f) + padding;
         float sizeX = ((mazeWidthWorld / 2f) + padding) / aspect;
         cam.orthographicSize = Mathf.Max(sizeY, sizeX);
+    }
+    public void ZoomOutCamera()
+    {
+        if (cam == null) return;
+        cam.orthographicSize *= zoomOutValue;
+    }
+    public void ZoomInCamera()
+    {
+        if (cam == null) return;
+        cam.orthographicSize /= zoomInValue;
     }
 }
