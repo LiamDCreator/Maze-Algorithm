@@ -15,6 +15,10 @@ public class MazeGenerator : MonoBehaviour
     private MazeCell[,] mazeGrid;
     private Coroutine mazeCoroutine;
 
+    [Header("Player Spawning")]
+    public GameObject playerPrefab; // Assign your player prefab in the Inspector
+    private GameObject playerInstance;
+
     void Start()
     {
         GenerateMaze();
@@ -36,6 +40,12 @@ public class MazeGenerator : MonoBehaviour
                 if (cell != null)
                     Destroy(cell.gameObject);
             }
+        }
+
+        // Destroy old player if it exists
+        if (playerInstance != null)
+        {
+            Destroy(playerInstance);
         }
 
         mazeGrid = new MazeCell[mazeWidth, mazeHeight];
@@ -85,31 +95,48 @@ public class MazeGenerator : MonoBehaviour
         sides.Remove(firstSide);
         int secondSide = sides[Random.Range(0, sides.Count)];
 
-        void OpenRandomSide(int side)
+        int entranceX = 0, entranceY = 0; // Defaults in case needed
+
+        void OpenRandomSide(int side, out int cellX, out int cellY)
         {
+            cellX = 0;
+            cellY = 0;
             switch (side)
             {
                 case 0: // Left
-                    int leftY = Random.Range(0, mazeHeight);
-                    mazeGrid[0, leftY].ClearLeftWall();
+                    cellY = Random.Range(0, mazeHeight);
+                    cellX = 0;
+                    mazeGrid[cellX, cellY].ClearLeftWall();
                     break;
                 case 1: // Right
-                    int rightY = Random.Range(0, mazeHeight);
-                    mazeGrid[mazeWidth - 1, rightY].ClearRightWall();
+                    cellY = Random.Range(0, mazeHeight);
+                    cellX = mazeWidth - 1;
+                    mazeGrid[cellX, cellY].ClearRightWall();
                     break;
                 case 2: // Bottom
-                    int bottomX = Random.Range(0, mazeWidth);
-                    mazeGrid[bottomX, 0].ClearBottomWall();
+                    cellX = Random.Range(0, mazeWidth);
+                    cellY = 0;
+                    mazeGrid[cellX, cellY].ClearBottomWall();
                     break;
                 case 3: // Top
-                    int topX = Random.Range(0, mazeWidth);
-                    mazeGrid[topX, mazeHeight - 1].ClearTopWall();
+                    cellX = Random.Range(0, mazeWidth);
+                    cellY = mazeHeight - 1;
+                    mazeGrid[cellX, cellY].ClearTopWall();
                     break;
             }
         }
 
-        OpenRandomSide(firstSide);
-        OpenRandomSide(secondSide);
+        // Open entrance and store its position
+        OpenRandomSide(firstSide, out entranceX, out entranceY);
+        // Open exit (no need to store position)
+        int dummyX, dummyY;
+        OpenRandomSide(secondSide, out dummyX, out dummyY);
+
+        // Spawn player at entrance
+        if (playerPrefab != null)
+        {
+            playerInstance = Instantiate(playerPrefab, new Vector3(entranceX, entranceY, 0), Quaternion.identity);
+        }
     }
 
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell)

@@ -392,7 +392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 88, y: -23}
+  m_AnchoredPosition: {x: 93.998, y: 27}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &239306555
@@ -1005,7 +1005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 132.25998, y: -51.443985}
+  m_AnchoredPosition: {x: 132.26013, y: -38.944016}
   m_SizeDelta: {x: 236.5243, y: 41.112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &610956675
@@ -1084,7 +1084,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 94.19998, y: 1.6000006}
+  m_AnchoredPosition: {x: 93.998, y: 54.4}
   m_SizeDelta: {x: 160, y: 19.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629023350
@@ -1163,7 +1163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 125.21, y: 107.59}
+  m_AnchoredPosition: {x: 130.41, y: 137.6}
   m_SizeDelta: {x: 232.4101, y: 33.171}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &635240048
@@ -1245,7 +1245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 89, y: 76}
+  m_AnchoredPosition: {x: 93.998, y: 103.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &697083328
@@ -1919,7 +1919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94, y: -87}
+  m_AnchoredPosition: {x: 94, y: -74.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1296242981
@@ -2216,9 +2216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mazeCellPrefab: {fileID: 5369778867414037177, guid: 67ae88737191cee47a3dbec929e16467, type: 3}
-  mazeWidth: 50
-  mazeHeight: 50
+  mazeWidth: 20
+  mazeHeight: 20
   waitTime: 0.01
+  playerPrefab: {fileID: 4325111420248802447, guid: e171584462a5dfb499085a7b4ea79b31, type: 3}
 --- !u!4 &1943830352
 Transform:
   m_ObjectHideFlags: 0
