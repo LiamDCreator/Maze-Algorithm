@@ -53,7 +53,6 @@ public class MazeGenerator : MonoBehaviour
 
     private IEnumerator GenerateMazeIterative(MazeCell startCell)
     {
-
         Stack<MazeCell> stack = new Stack<MazeCell>();
         stack.Push(startCell);
 
@@ -79,6 +78,38 @@ public class MazeGenerator : MonoBehaviour
 
             yield return new WaitForSeconds(waitTime);
         }
+
+        // Open two random sides after maze generation
+        List<int> sides = new List<int> { 0, 1, 2, 3 }; // 0=left, 1=right, 2=bottom, 3=top
+        int firstSide = sides[Random.Range(0, sides.Count)];
+        sides.Remove(firstSide);
+        int secondSide = sides[Random.Range(0, sides.Count)];
+
+        void OpenRandomSide(int side)
+        {
+            switch (side)
+            {
+                case 0: // Left
+                    int leftY = Random.Range(0, mazeHeight);
+                    mazeGrid[0, leftY].ClearLeftWall();
+                    break;
+                case 1: // Right
+                    int rightY = Random.Range(0, mazeHeight);
+                    mazeGrid[mazeWidth - 1, rightY].ClearRightWall();
+                    break;
+                case 2: // Bottom
+                    int bottomX = Random.Range(0, mazeWidth);
+                    mazeGrid[bottomX, 0].ClearBottomWall();
+                    break;
+                case 3: // Top
+                    int topX = Random.Range(0, mazeWidth);
+                    mazeGrid[topX, mazeHeight - 1].ClearTopWall();
+                    break;
+            }
+        }
+
+        OpenRandomSide(firstSide);
+        OpenRandomSide(secondSide);
     }
 
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell)
