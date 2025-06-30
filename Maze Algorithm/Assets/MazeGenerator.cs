@@ -16,7 +16,7 @@ public class MazeGenerator : MonoBehaviour
     private Coroutine mazeCoroutine;
 
     [Header("Player Spawning")]
-    public GameObject playerPrefab; // Assign your player prefab in the Inspector
+    public GameObject playerPrefab;
     private GameObject playerInstance;
 
     void Start()
@@ -47,9 +47,9 @@ public class MazeGenerator : MonoBehaviour
         {
             Destroy(playerInstance);
         }
-
+        // Create a new grid for the maze
         mazeGrid = new MazeCell[mazeWidth, mazeHeight];
-
+        // Instantiate all maze cells
         for (int x = 0; x < mazeWidth; x++)
         {
             for (int y = 0; y < mazeHeight; y++)
@@ -60,7 +60,7 @@ public class MazeGenerator : MonoBehaviour
 
         mazeCoroutine = StartCoroutine(GenerateMazeIterative(mazeGrid[0, 0]));
     }
-
+    // Coroutine that generates the maze using an iterative DFS algorithm
     private IEnumerator GenerateMazeIterative(MazeCell startCell)
     {
         Stack<MazeCell> stack = new Stack<MazeCell>();
@@ -73,7 +73,7 @@ public class MazeGenerator : MonoBehaviour
             {
                 currentCell.Visit();
             }
-
+            // Get a shuffled list of unvisited neighbors
             var unvisited = GetUnvisitedCells(currentCell).OrderBy(_ => Random.value).ToList();
             if (unvisited.Count > 0)
             {
@@ -89,14 +89,14 @@ public class MazeGenerator : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
         }
 
-        // Open two random sides after maze generation
+        // Choose two random sides to open as entrances/exits
         List<int> sides = new List<int> { 0, 1, 2, 3 }; // 0=left, 1=right, 2=bottom, 3=top
         int firstSide = sides[Random.Range(0, sides.Count)];
         sides.Remove(firstSide);
         int secondSide = sides[Random.Range(0, sides.Count)];
 
-        int entranceX = 0, entranceY = 0; // Defaults in case needed
-
+        int entranceX = 0, entranceY = 0;
+        // Helper function to open a wall on a random cell along a side
         void OpenRandomSide(int side, out int cellX, out int cellY)
         {
             cellX = 0;
@@ -138,7 +138,7 @@ public class MazeGenerator : MonoBehaviour
             playerInstance = Instantiate(playerPrefab, new Vector3(entranceX, entranceY, 0), Quaternion.identity);
         }
     }
-
+    // Returns all unvisited neighboring cells of the given cell
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell)
     {
         int x = (int)currentCell.transform.position.x;
@@ -177,7 +177,7 @@ public class MazeGenerator : MonoBehaviour
             }
         }
     }
-
+    // Removes the wall between two adjacent cells based on their relative positions
     private void ClearWalls(MazeCell previousCell, MazeCell currentCell)
     {
         if (previousCell == null)

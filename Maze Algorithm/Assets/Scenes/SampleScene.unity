@@ -2197,7 +2197,7 @@ GameObject:
   - component: {fileID: 1943830352}
   - component: {fileID: 1943830351}
   m_Layer: 0
-  m_Name: maze Generator
+  m_Name: MazeGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2216,8 +2216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mazeCellPrefab: {fileID: 5369778867414037177, guid: 67ae88737191cee47a3dbec929e16467, type: 3}
-  mazeWidth: 20
-  mazeHeight: 20
+  mazeWidth: 100
+  mazeHeight: 100
   waitTime: 0.01
   playerPrefab: {fileID: 4325111420248802447, guid: e171584462a5dfb499085a7b4ea79b31, type: 3}
 --- !u!4 &1943830352

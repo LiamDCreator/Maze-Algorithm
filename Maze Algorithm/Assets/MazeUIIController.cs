@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MazeUIIController : MonoBehaviour
+public class MazeUIController : MonoBehaviour
 {
     public MazeGenerator mazeGenerator;
     public InputField widthInput;
@@ -45,8 +45,8 @@ public class MazeUIIController : MonoBehaviour
             tempWaitTime = waitTime;
     }
 
-    // Call this from your Generate button
-    public void ApplyMazeSettings()
+
+    public void ApplyMazeSettings() // apply new maze settings when Generate button is pressed
     {
         mazeGenerator.mazeWidth = tempWidth;
         mazeGenerator.mazeHeight = tempHeight;

@@ -3,7 +3,7 @@ using UnityEngine;
 public class MazeCameraController : MonoBehaviour
 {
     public MazeGenerator mazeGenerator;
-    public float cellSize = 1f; // Set to your cell prefab's size (default 1)
+    public float cellSize = 1f;
     public float padding = 1f;  // Extra space around the maze
     [SerializeField] private float zoomOutValue;
     [SerializeField] private float zoomInValue;
@@ -28,7 +28,7 @@ public class MazeCameraController : MonoBehaviour
         // Center position
         float centerX = (mazeGenerator.mazeWidth - 1) * cellSize / 3f;
         float centerY = (mazeGenerator.mazeHeight - 1) * cellSize / 2f;
-        Vector3 center = new Vector3(centerX, centerY, -10f); // -10 for default camera z
+        Vector3 center = new Vector3(centerX, centerY, -10f); // camera position to middle of maze
 
         // Set camera position
         cam.transform.position = center;
@@ -37,7 +37,7 @@ public class MazeCameraController : MonoBehaviour
         float aspect = cam.aspect;
         float sizeY = (mazeHeightWorld / 2f) + padding;
         float sizeX = ((mazeWidthWorld / 2f) + padding) / aspect;
-        cam.orthographicSize = Mathf.Max(sizeY, sizeX);
+        cam.orthographicSize = Mathf.Max(sizeY, sizeX); // camera size scales with maze size
     }
     public void ZoomOutCamera()
     {
